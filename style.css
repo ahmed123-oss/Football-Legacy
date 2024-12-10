@@ -1,0 +1,170 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eaf5f8; /* خلفية فاتحة مائلة للأزرق */
+    color: #003366; /* لون النص */
+}
+
+header {
+    background-color: #003366; /* لون أزرق غامق */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+    color: #00cc66; /* لون أخضر عند المرور */
+}
+
+/* Search Section */
+.search-section {
+    text-align: center;
+    padding: 40px;
+    background-color: #ffffff;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #003366;
+}
+
+.search-section input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 2px solid #003366;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    background-color: #00cc66; /* أخضر */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-section button:hover {
+    background-color: #00994d; /* لون الزر عند المرور */
+}
+
+/* About Section */
+.about-section {
+    background-color: #ffffff;
+    padding: 30px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #003366;
+}
+
+/* Football Section */
+.football-section {
+    background-color: #ffffff;
+    padding: 30px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.football-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #003366;
+}
+
+/* Footer Section */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* نتائج البحث */
+#searchResult {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #eaf5f8;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#searchResult h3 {
+    color: #00cc66;
+}
+
+#searchResult p {
+    font-size: 1.2em;
+    color: #003366;
+}
+
+/* تنسيق قائمة الاقتراحات */
+.suggestions-list {
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 5px;
+    z-index: 10;
+    border-radius: 5px;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.suggestion-item:hover {
+    background-color: #eaf5f8;
+}
