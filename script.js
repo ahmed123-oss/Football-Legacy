@@ -43,6 +43,58 @@ const teams = [
         name: "Manchester City",
         description: "Manchester City is an English football club, currently one of the most successful clubs in the Premier League.",
         link: "mancity.html" // رابط صفحة "Manchester City"
+    },
+    {
+        name: "Paris Saint Germain",
+        description: "paris.",
+        link: "psg.html" // رابط صفحة "Manchester City"
+    },
+    {
+        name: "Bayern Munich",
+        description: ".",
+        link: "bayern.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Borussia Dortmund",
+        description: ".",
+        link: "bvb.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Chelsea",
+        description: ".",
+        link: "chelsea.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Inter Millan",
+        description: ".",
+        link: "inter.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Ac Millan",
+        description: ".",
+        link: "ac.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Pyramids",
+        description: ".",
+        link: "pr.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Arsenal",
+        description: ".",
+        link: "arsenal.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Tottenham",
+        description: ".",
+        link: "tot.html" // رابط صفحة "Manchester City"
     }
 ];
 
