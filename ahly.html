@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al Ahly Club</title>
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Al_Ahly_SC_logo.svg/190px-Al_Ahly_SC_logo.svg.png" type="image/png">
-
     <style>
-
         .ahly-section h2 {
             margin: 0;
             font-weight: bold;
@@ -104,15 +102,38 @@
             width: 100px; /* تقليل حجم الصورة */
             height: auto;
         }
-          /* تغيير لون النص في الفقرة */
-          p {
+        /* تغيير لون النص في الفقرة */
+        p {
             color: #000000; /* تغيير اللون إلى الذهب */
         }
         ul li {
-    color: #000000; /* تغيير اللون إلى الذهبي */
-}
+            color: #000000; /* تغيير اللون إلى الذهبي */
+        }
 
+        /* تخصيص القائمة الجديدة للاعبين والمباريات القادمة */
+        .player-list, .upcoming-matches {
+            background-color: #fff;
+            padding: 18px;
+            margin: 25px auto;
+            border-radius: 12px;
+            max-width: 1300px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
+        .player-list h3, .upcoming-matches h3 {
+            color: #b20000;
+            margin-bottom: 10px;
+        }
+
+        .player-list ul, .upcoming-matches ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .player-list li, .upcoming-matches li {
+            color: #000;
+            margin-bottom: 5px;
+        }
 
     </style>
 </head>
@@ -186,7 +207,7 @@
             12 CAF Champions League titles (the most by any African club).
             Multiple CAF Super Cups, CAF Confederation Cups, and international recognitions.
             Legacy
-            Al Ahly SC remains a symbol of Egyptian pride and African excellence. Its story is not just about football but about resilience, unity, and passion, making it a club beloved by millions worldwide. </p>
+            Al Ahly SC remains a symbol of Egyptian pride and African excellence. Its story is not just about football but about resilience, unity, and passion, making it a club beloved by millions worldwide.</p>
     </section>
 
     <section id="achievements" class="ahly-section">
@@ -197,6 +218,27 @@
             <li>8 African Super Cup Titles</li>
             <li>38 Egyptian Cup</li>
             <li>14 Egyptian Super cup</li>
+        </ul>
+    </section>
+
+    <section class="player-list">
+        <h3>Al Ahly Players</h3>
+        <ul>
+            <li>Goalkeeper: Mohamed El-Shenawy , Mostafa Shoubeir , Hamza Alaa , Mostafa Makloof</li>
+            <li>Defender: Ramy Rabiea , Yasser Ibrahim , Youssef ayman , Ashraf Dari , Khaled Abdelfattah , Akram Tawfiq , Mohamed Hany , Omar Kamal , Karim Fouad , Ali Maloul , Yahia attia allah , karim El Debis</li>
+            <li>Midfielder: Amr El-Sulaya , Emam Ashour , Afsha , Marwan Attia , Koka , Omar El Saei </li>
+            <li>Forward: Wessam Abou Ali , Kahraba , Hessin El Shahat , Percy Taou , Reda Selim , Tahaer mohamed , Mohamed Samir</li>
+            <!-- Add other players here -->
+        </ul>
+    </section>
+
+    <section class="upcoming-matches">
+        <h3>Upcoming Matches</h3>
+        <ul>
+            <li>Match 1: Al Ahly vs Pachuca - Semi final Intercontinental Cup 14 December</li>
+            <li>Match 2: Al Ahly vs Cr Belouizdad - Caf Champions League 22 December</li>
+            <li>Match 3: Al Ahly vs Al Masry - Nile League 26 December</li>
+            <!-- Add other upcoming matches here -->
         </ul>
     </section>
 
