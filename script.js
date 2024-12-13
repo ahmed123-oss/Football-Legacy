@@ -96,6 +96,37 @@ const teams = [
         description: ".",
         link: "tot.html" // رابط صفحة "Manchester City"
     }
+    ,
+    {
+        name: "Juventus",
+        description: ".",
+        link: "jev.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Roma",
+        description: ".",
+        link: "roma.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Atletico Madrid",
+        description: ".",
+        link: "atmadrid.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Bayer Leverkusen",
+        description: ".",
+        link: "Leverkusen.html" // رابط صفحة "Manchester City"
+    }
+    ,
+    {
+        name: "Sevilla Fc",
+        description: ".",
+        link: "Sevilla.html" // رابط صفحة "Manchester City"
+    }
+ 
 ];
 
 // وظيفة الاقتراحات أثناء الكتابة
