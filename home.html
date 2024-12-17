@@ -9,21 +9,19 @@
 <body>
     <!-- Header Section -->
     <header class="header">
+        <div class="user-info">
+            <span id="userEmail"></span> <!-- Display user email -->
+            <button id="signoutButton">Sign Out</button> <!-- Sign Out Button -->
+        </div>
         <h1>Welcome to the Football legacy Website</h1>
         <nav>
             <ul>
                 <li><a href="#search">Search</a></li>
                 <li><a href="#about">About the Website</a></li>
                 <li><a href="#football">Football</a></li>
-                <li><a href="#" id="signoutButton">Sign Out</a></li> <!-- Button to Sign Out -->
             </ul>
         </nav>
     </header>
-
-    <!-- User Info Section -->
-    <section id="userInfo" class="user-info-section">
-        <h2 id="userName"></h2> <!-- Display username -->
-    </section>
 
     <!-- Search Section -->
     <section id="search" class="search-section">
@@ -33,7 +31,7 @@
         <button id="searchButton">Search</button>
         <div id="searchResult"></div>
     </section>
-
+    
     <!-- About Section -->
     <section id="about" class="about-section">
         <h2>About the Website</h2>
@@ -56,35 +54,33 @@
     <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
+            authDomain: "ahmed-99129.firebaseapp.com",
+            projectId: "ahmed-99129",
+            storageBucket: "ahmed-99129.appspot.com",
+            messagingSenderId: "113829270298",
+            appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
+            measurementId: "G-YGW2QVQ32C"
         };
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        const auth = firebase.auth();
-        const userNameElement = document.getElementById('userName');
-        const signoutButton = document.getElementById('signoutButton');
+        const firebaseApp = firebase.initializeApp(firebaseConfig);
+        const auth = firebaseApp.auth();
+        const userEmailElement = document.getElementById("userEmail");
+        const signoutButton = document.getElementById("signoutButton");
 
         window.onload = function() {
             const user = auth.currentUser;
 
             if (user) {
-                // Display user info when logged in
-                userNameElement.textContent = `Hello, ${user.displayName || user.email}`;
-                signoutButton.style.display = 'block'; // Show sign out button
+                // Display user's email at the top
+                userEmailElement.textContent = `Logged in as: ${user.email}`;
             } else {
-                // Redirect to sign-in page if not logged in
+                // Redirect to login page if user is not logged in
                 window.location.href = 'index.html';
             }
         }
 
-        // Add event listener for sign-out button
+        // Event listener for sign-out button
         signoutButton.addEventListener('click', (e) => {
             e.preventDefault();
             auth.signOut().then(() => {
