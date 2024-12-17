@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
   <style>
-    h1{
+    h1 {
       font-size: 500%;
       margin-top: 0%;
     }
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #00c6ff, #0072ff); /* خلفية جذابة */
+      background: linear-gradient(to right, #00c6ff, #0072ff);
       text-align: center;
       margin-top: 50px;
       padding: 0;
       height: 100vh;
     }
     form {
-      background-color: rgba(255, 255, 255, 0.444); /* شفافية أكثر */
-      padding: 60px; /* زيادة المسافة الداخلية */
+      background-color: rgba(255, 255, 255, 0.444);
+      padding: 60px;
       border-radius: 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       display: inline-block;
       width: 90%;
       max-width: 400px;
-      margin-top: 100px; /* نزول الفورم قليلًا */
+      margin-top: 100px;
     }
     input, button {
       display: block;
@@ -34,7 +34,7 @@
       width: 80%;
       border-radius: 8px;
       border: 1px solid #ceadad;
-      font-size: 16px; /* زيادة حجم الخط */
+      font-size: 16px;
     }
     button {
       background-color: #28a745;
@@ -59,36 +59,6 @@
       margin-top: 10px;
       font-weight: bold;
     }
-    
-    /* Toast notification styles */
-    #toast {
-      visibility: hidden;
-      min-width: 250px;
-      margin-left: -125px;
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      border-radius: 2px;
-      padding: 16px;
-      position: fixed;
-      z-index: 1;
-      left: 50%;
-      bottom: 30px;
-      font-size: 17px;
-      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-    }
-    #toast.show {
-      visibility: visible;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-    @keyframes fadein {
-      from {bottom: 0; opacity: 0;}
-      to {bottom: 30px; opacity: 1;}
-    }
-    @keyframes fadeout {
-      from {bottom: 30px; opacity: 1;}
-      to {bottom: 0; opacity: 0;}
-    }
   </style>
 </head>
 <body>
@@ -101,13 +71,9 @@
     <p>Already have an account? <a href="index.html">Sign In</a></p>
   </form>
 
-  <!-- Toast notification -->
-  <div id="toast">Account created successfully! Redirecting to Sign In.</div>
-
-  <!-- إضافة Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
-  
+
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
@@ -123,7 +89,6 @@
     const auth = firebaseApp.auth();
     const signupForm = document.getElementById("signupForm");
     const errorElement = document.getElementById("error");
-    const toast = document.getElementById("toast");
 
     signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -132,12 +97,7 @@
 
       auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-          // Show success message (Toast)
-          toast.className = "show";
-          setTimeout(() => {
-            toast.className = toast.className.replace("show", "");
-            window.location.href = "index.html"; // redirect to Sign In
-          }, 3000);
+          window.location.href = "index.html"; // Redirect to Sign In page
         })
         .catch((error) => {
           errorElement.textContent = error.message;
@@ -146,4 +106,3 @@
   </script>
 </body>
 </html>
-
