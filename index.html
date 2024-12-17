@@ -59,6 +59,36 @@
       margin-top: 10px;
       font-weight: bold;
     }
+
+    /* Toast notification styles */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 17px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @keyframes fadein {
+      from {bottom: 0; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 0; opacity: 0;}
+    }
   </style>
 </head>
 <body>
@@ -71,10 +101,12 @@
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </form>
 
-  <!-- إضافة Firebase SDK -->
+  <!-- Toast notification -->
+  <div id="toast">Sign In successful! Redirecting to Home.</div>
+
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
-  
+
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
@@ -90,6 +122,7 @@
     const auth = firebaseApp.auth();
     const signinForm = document.getElementById("signinForm");
     const errorElement = document.getElementById("error");
+    const toast = document.getElementById("toast");
 
     signinForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -98,8 +131,12 @@
 
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-          alert("Signed in successfully!");
-          window.location.href = "home.html"; // redirect to home or dashboard page
+          // Show success message (Toast)
+          toast.className = "show";
+          setTimeout(() => {
+            toast.className = toast.className.replace("show", "");
+            window.location.href = "home.html"; // redirect to Home page
+          }, 3000);
         })
         .catch((error) => {
           errorElement.textContent = error.message;
@@ -108,3 +145,4 @@
   </script>
 </body>
 </html>
+
