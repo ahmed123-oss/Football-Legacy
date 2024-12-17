@@ -1,95 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports Website</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 50px;
+    }
+    .content {
+      margin-top: 30px;
+    }
+    input[type="file"] {
+      padding: 12px;
+      font-size: 16px;
+    }
+    .btn-upload {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    .btn-upload:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <div class="user-info">
-            <span id="userEmail"></span> <!-- Display user email -->
-            <button id="signoutButton">Sign Out</button> <!-- Sign Out Button -->
-        </div>
-        <h1>Welcome to the Football legacy Website</h1>
-        <nav>
-            <ul>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#about">About the Website</a></li>
-                <li><a href="#football">Football</a></li>
-            </ul>
-        </nav>
-    </header>
+  <h1>Welcome to Home Page</h1>
+  <div class="content">
+    <h3>Upload a file to Firebase Storage</h3>
+    <input type="file" id="fileInput">
+    <button class="btn-upload" onclick="uploadFile()">Upload</button>
+    <p id="uploadStatus"></p>
+  </div>
 
-    <!-- Search Section -->
-    <section id="search" class="search-section">
-        <h2>Search for Your Team</h2>
-        <input type="text" id="searchInput" placeholder="Enter team name..." autocomplete="off">
-        <div id="suggestionsList" class="suggestions-list"></div>
-        <button id="searchButton">Search</button>
-        <div id="searchResult"></div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <h2>About the Website</h2>
-        <p>This website provides information about football, allowing you to search for teams and learn about their history and achievements.</p>
-    </section>
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-storage-compat.js"></script>
 
-    <!-- Football Section -->
-    <section id="football" class="football-section">
-        <h2>Football</h2>
-        <p>Football is the most popular sport in the world. Stay tuned for the latest news and matches.</p>
-    </section>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
+      authDomain: "ahmed-99129.firebaseapp.com",
+      projectId: "ahmed-99129",
+      storageBucket: "ahmed-99129.appspot.com",
+      messagingSenderId: "113829270298",
+      appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
+      measurementId: "G-YGW2QVQ32C"
+    };
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <p>&copy; 2024 Sports Website. All rights reserved.</p>
-    </footer>
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const storage = firebaseApp.storage();
+    const uploadStatus = document.getElementById("uploadStatus");
 
-    <!-- Firebase Script -->
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
-            authDomain: "ahmed-99129.firebaseapp.com",
-            projectId: "ahmed-99129",
-            storageBucket: "ahmed-99129.appspot.com",
-            messagingSenderId: "113829270298",
-            appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
-            measurementId: "G-YGW2QVQ32C"
-        };
+    function uploadFile() {
+      const fileInput = document.getElementById("fileInput");
+      const file = fileInput.files[0];
 
-        const firebaseApp = firebase.initializeApp(firebaseConfig);
-        const auth = firebaseApp.auth();
-        const userEmailElement = document.getElementById("userEmail");
-        const signoutButton = document.getElementById("signoutButton");
+      if (file) {
+        const storageRef = storage.ref("uploads/" + file.name);
+        const uploadTask = storageRef.put(file);
 
-        window.onload = function() {
-            const user = auth.currentUser;
-
-            if (user) {
-                // Display user's email at the top
-                userEmailElement.textContent = `Logged in as: ${user.email}`;
-            } else {
-                // Redirect to login page if user is not logged in
-                window.location.href = 'index.html';
-            }
-        }
-
-        // Event listener for sign-out button
-        signoutButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            auth.signOut().then(() => {
-                // Redirect to sign-in page after sign out
-                window.location.href = 'index.html';
-            }).catch((error) => {
-                console.error('Error signing out:', error);
-            });
+        uploadTask.on("state_changed", (snapshot) => {
+          // You can track upload progress here if needed
+        }, (error) => {
+          uploadStatus.textContent = "Error: " + error.message;
+        }, () => {
+          uploadStatus.textContent = "File uploaded successfully!";
         });
-    </script>
+      } else {
+        uploadStatus.textContent = "No file selected!";
+      }
+    }
+  </script>
 </body>
 </html>
+
