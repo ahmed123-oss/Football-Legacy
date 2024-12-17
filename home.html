@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -5,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Website</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <!-- Header Section -->
@@ -19,12 +21,6 @@
         </nav>
     </header>
 
-    <!-- User Info Section -->
-    <div class="user-info">
-        <span id="userEmail"></span> <!-- Display user email -->
-        <a href="index.html" id="signoutLink">Sign Out</a> <!-- Link for Sign Out -->
-    </div>
-
     <!-- Search Section -->
     <section id="search" class="search-section">
         <h2>Search for Your Team</h2>
@@ -34,63 +30,30 @@
         <div id="searchResult"></div>
     </section>
     
+    
     <!-- About Section -->
     <section id="about" class="about-section">
         <h2>About the Website</h2>
-        <p>This website provides information about football, allowing you to search for teams and learn about their history and achievements.</p>
+        <p>This website provide information about football, allowing you to search for teams and learn about their history and achievements.</p>
     </section>
 
     <!-- Football Section -->
     <section id="football" class="football-section">
         <h2>Football</h2>
-        <p>Football is the most popular sport in the world. Stay tuned for the latest news and matches.</p>
+        <p>Football is the most popular sport in the world. Stay tuned for the latest news and matches..</p>
+    </section>
+    <section>
+        <a href="index.html" id="signoutLink" class="signout-link">Sign Out</a>
+
     </section>
 
     <!-- Footer Section -->
+     
     <footer class="footer">
         <p>&copy; 2024 Sports Website. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Assuming you're using Firebase for authentication
-        const firebaseConfig = {
-            apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
-            authDomain: "ahmed-99129.firebaseapp.com",
-            projectId: "ahmed-99129",
-            storageBucket: "ahmed-99129.appspot.com",
-            messagingSenderId: "113829270298",
-            appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
-            measurementId: "G-YGW2QVQ32C"
-        };
-
-        const firebaseApp = firebase.initializeApp(firebaseConfig);
-        const auth = firebaseApp.auth();
-        const userEmailElement = document.getElementById("userEmail");
-
-        window.onload = function() {
-            const user = auth.currentUser;
-
-            if (user) {
-                // Display user's email at the top
-                userEmailElement.textContent = `Logged in as: ${user.email}`;
-            } else {
-                // Redirect to login page if user is not logged in
-                window.location.href = 'index.html';
-            }
-        }
-
-        // Sign-out link event
-        document.getElementById('signoutLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            auth.signOut().then(() => {
-                // Redirect to sign-in page after sign out
-                window.location.href = 'index.html';
-            }).catch((error) => {
-                console.error('Error signing out:', error);
-            });
-        });
-    </script>
 </body>
-</html>
+</html> 
 
