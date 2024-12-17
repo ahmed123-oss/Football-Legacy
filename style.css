@@ -168,3 +168,33 @@ footer p {
 .suggestion-item:hover {
     background-color: #eaf5f8;
 }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+#signoutButton {
+    margin-left: 20px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#signoutButton:hover {
+    background-color: darkred;
+}
+
+#userEmail {
+    font-size: 16px;
+}
