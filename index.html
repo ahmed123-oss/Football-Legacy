@@ -5,27 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In</title>
   <style>
-    h1{
+    h1 {
       font-size: 500%;
       margin-top: 0%;
     }
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #00c6ff, #0072ff); /* خلفية جذابة */
+      background: linear-gradient(to right, #00c6ff, #0072ff);
       text-align: center;
       margin-top: 50px;
       padding: 0;
       height: 100vh;
     }
     form {
-      background-color: rgba(255, 255, 255, 0.444); /* شفافية أكثر */
-      padding: 60px; /* زيادة المسافة الداخلية */
+      background-color: rgba(255, 255, 255, 0.444);
+      padding: 60px;
       border-radius: 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       display: inline-block;
       width: 90%;
       max-width: 400px;
-      margin-top: 100px; /* نزول الفورم قليلًا */
+      margin-top: 100px;
     }
     input, button {
       display: block;
@@ -34,7 +34,7 @@
       width: 80%;
       border-radius: 8px;
       border: 1px solid #ceadad;
-      font-size: 16px; /* زيادة حجم الخط */
+      font-size: 16px;
     }
     button {
       background-color: #28a745;
@@ -59,8 +59,6 @@
       margin-top: 10px;
       font-weight: bold;
     }
-
-    /* Toast notification styles */
     #toast {
       visibility: hidden;
       min-width: 250px;
@@ -101,11 +99,11 @@
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </form>
 
-  <!-- Toast notification -->
   <div id="toast">Sign In successful! Redirecting to Home.</div>
 
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-storage-compat.js"></script>
 
   <script>
     const firebaseConfig = {
@@ -131,11 +129,10 @@
 
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-          // Show success message (Toast)
           toast.className = "show";
           setTimeout(() => {
             toast.className = toast.className.replace("show", "");
-            window.location.href = "home.html"; // redirect to Home page
+            window.location.href = "home.html";
           }, 3000);
         })
         .catch((error) => {
