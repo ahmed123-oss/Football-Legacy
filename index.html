@@ -5,24 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In</title>
   <style>
-    /* اضافة التنسيقات التي تم تحديدها من قبل */
+    h1{
+      font-size: 500%;
+      margin-top: 0%;
+    }
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+      background: linear-gradient(to right, #00c6ff, #0072ff); /* خلفية جذابة */
       text-align: center;
       margin-top: 50px;
       padding: 0;
       height: 100vh;
     }
     form {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 60px;
+      background-color: rgba(255, 255, 255, 0.444); /* شفافية أكثر */
+      padding: 60px; /* زيادة المسافة الداخلية */
       border-radius: 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       display: inline-block;
       width: 90%;
       max-width: 400px;
-      margin-top: 100px;
+      margin-top: 100px; /* نزول الفورم قليلًا */
     }
     input, button {
       display: block;
@@ -31,7 +34,7 @@
       width: 80%;
       border-radius: 8px;
       border: 1px solid #ceadad;
-      font-size: 16px;
+      font-size: 16px; /* زيادة حجم الخط */
     }
     button {
       background-color: #28a745;
@@ -59,21 +62,20 @@
   </style>
 </head>
 <body>
-  <form id="signInForm">
+  <form id="signinForm">
     <h1 style="color: white;">Sign In</h1>
-    <input type="email" id="signInEmail" placeholder="Enter Email" required>
-    <input type="password" id="signInPassword" placeholder="Enter Password" required>
+    <input type="email" id="email" placeholder="Enter Email" required>
+    <input type="password" id="password" placeholder="Enter Password" required>
     <button type="submit">Sign In</button>
     <p class="error" id="error"></p>
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </form>
 
-  <!-- Firebase SDKs -->
+  <!-- إضافة Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
+  
   <script>
-    // إعداد Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
       authDomain: "ahmed-99129.firebaseapp.com",
@@ -84,25 +86,23 @@
       measurementId: "G-YGW2QVQ32C"
     };
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const auth = firebaseApp.auth();
+    const signinForm = document.getElementById("signinForm");
+    const errorElement = document.getElementById("error");
 
-    // تسجيل الدخول عبر Firebase
-    document.getElementById('signInForm').addEventListener('submit', (e) => {
+    signinForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const email = document.getElementById('signInEmail').value;
-      const password = document.getElementById('signInPassword').value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          alert("Login successful!");
-          window.location.href = "home.html"; // الانتقال إلى الصفحة الرئيسية بعد تسجيل الدخول
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Signed in successfully!");
+          window.location.href = "home.html"; // redirect to home or dashboard page
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          document.getElementById('error').textContent = errorMessage;
+          errorElement.textContent = error.message;
         });
     });
   </script>
