@@ -4,11 +4,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: #eaf5f8; /* خلفية فاتحة مائلة للأزرق */
-    color: #003366; /* لون النص */
+    color: #000000; /* لون النص */
 }
 
 header {
-    background-color: #003366; /* لون أزرق غامق */
+    background-color: #000000; /* لون أزرق غامق */
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -54,14 +54,14 @@ nav ul li a:hover {
 .search-section h2 {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #003366;
+    color: #000000;
 }
 
 .search-section input[type="text"] {
     width: 50%;
     padding: 10px;
     font-size: 1.2em;
-    border: 2px solid #003366;
+    border: 2px solid #000000;
     border-radius: 5px;
     margin-right: 10px;
 }
@@ -92,7 +92,7 @@ nav ul li a:hover {
 .about-section h2 {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #003366;
+    color: #000000;
 }
 
 /* Football Section */
@@ -107,35 +107,20 @@ nav ul li a:hover {
 .football-section h2 {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #003366;
+    color: #000000;
 }
 
 /* Footer Section */
-footer {
-    background-color: #003366;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #f1f1f1;
+        position: relative;
+        bottom: 0;
+        width: 100%;
 }
 
-footer p {
-    margin: 0;
-}
-
-/* نتائج البحث */
-#searchResult {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #eaf5f8;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 #searchResult h3 {
     color: #00cc66;
@@ -149,11 +134,11 @@ footer p {
 /* تنسيق قائمة الاقتراحات */
 .suggestions-list {
     position: absolute;
-    background-color: #fff;
+    background-color: #00994d;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     max-height: 150px;
     overflow-y: auto;
-    width: 100%;
+    width: 90%;
     margin-top: 5px;
     z-index: 10;
     border-radius: 5px;
@@ -168,33 +153,20 @@ footer p {
 .suggestion-item:hover {
     background-color: #eaf5f8;
 }
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: white;
-    padding: 10px;
-}
+#signoutLink {
 
-.user-info {
-    display: flex;
-    align-items: center;
-}
-
-#signoutButton {
-    margin-left: 20px;
-    padding: 10px;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#signoutButton:hover {
-    background-color: darkred;
-}
-
-#userEmail {
+    padding: 10px 20px;
     font-size: 16px;
+    background-color: #14ac33; /* اللون الأخضر */
+    color: white;
+    
+    border-radius: 20px;
+    position: fixed; /* لجعل الزر ثابت في أسفل الشاشة */
+    bottom: 20px; /* المسافة من أسفل الشاشة *
+
+    z-index: 10; /* لضمان أن الزر يظهر فوق العناصر الأخرى */
+}
+
+#signoutLink:hover {
+    background-color: #118c25; /* تغيير اللون عند التحويم */
 }
