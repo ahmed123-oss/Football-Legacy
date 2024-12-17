@@ -5,24 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
   <style>
-    /* اضافة التنسيقات التي تم تحديدها من قبل */
+    h1{
+      font-size: 500%;
+      margin-top: 0%;
+    }
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+      background: linear-gradient(to right, #00c6ff, #0072ff); /* خلفية جذابة */
       text-align: center;
       margin-top: 50px;
       padding: 0;
       height: 100vh;
     }
     form {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 60px;
+      background-color: rgba(255, 255, 255, 0.444); /* شفافية أكثر */
+      padding: 60px; /* زيادة المسافة الداخلية */
       border-radius: 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       display: inline-block;
       width: 90%;
       max-width: 400px;
-      margin-top: 100px;
+      margin-top: 100px; /* نزول الفورم قليلًا */
     }
     input, button {
       display: block;
@@ -31,7 +34,7 @@
       width: 80%;
       border-radius: 8px;
       border: 1px solid #ceadad;
-      font-size: 16px;
+      font-size: 16px; /* زيادة حجم الخط */
     }
     button {
       background-color: #28a745;
@@ -59,21 +62,20 @@
   </style>
 </head>
 <body>
-  <form id="signUpForm">
+  <form id="signupForm">
     <h1 style="color: white;">Sign Up</h1>
     <input type="email" id="email" placeholder="Enter Email" required>
     <input type="password" id="password" placeholder="Enter Password" required>
     <button type="submit">Sign Up</button>
     <p class="error" id="error"></p>
-    <p>Already have an account? <a href="index.html">Sign In</a></p>
+    <p>Already have an account? <a href="signin.html">Sign In</a></p>
   </form>
 
-  <!-- Firebase SDKs -->
+  <!-- إضافة Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
+  
   <script>
-    // إعداد Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
       authDomain: "ahmed-99129.firebaseapp.com",
@@ -84,35 +86,23 @@
       measurementId: "G-YGW2QVQ32C"
     };
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.database();
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const auth = firebaseApp.auth();
+    const signupForm = document.getElementById("signupForm");
+    const errorElement = document.getElementById("error");
 
-    // التسجيل عبر Firebase
-    document.getElementById('signUpForm').addEventListener('submit', (e) => {
+    signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-      // التحقق من البريد الإلكتروني وكلمة المرور في Firebase
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-
-          // تخزين البيانات في Firebase Realtime Database
-          firebase.database().ref('users/' + user.uid).set({
-            email: email,
-            password: password
-          })
-          .then(() => {
-            alert("Account created successfully!");
-            window.location.href = "signin.html"; // الانتقال إلى صفحة تسجيل الدخول
-          });
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Account created successfully! Redirecting to Sign In.");
+          window.location.href = "signin.html";
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          document.getElementById('error').textContent = errorMessage;
+          errorElement.textContent = error.message;
         });
     });
   </script>
