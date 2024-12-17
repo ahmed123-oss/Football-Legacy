@@ -15,7 +15,7 @@
                 <li><a href="#search">Search</a></li>
                 <li><a href="#about">About the Website</a></li>
                 <li><a href="#football">Football</a></li>
-                <li><a href="index.html" id="signoutButton" style="display: none;">Sign Out</a></li> <!-- Hidden sign out button initially -->
+                <li><a href="#" id="signoutButton">Sign Out</a></li> <!-- Button to Sign Out -->
             </ul>
         </nav>
     </header>
@@ -71,23 +71,24 @@
         const userNameElement = document.getElementById('userName');
         const signoutButton = document.getElementById('signoutButton');
 
-        // Add observer to track user login status
-        firebase.auth().onAuthStateChanged((user) => {
+        window.onload = function() {
+            const user = auth.currentUser;
+
             if (user) {
-                // User is logged in, show user data
+                // Display user info when logged in
                 userNameElement.textContent = `Hello, ${user.displayName || user.email}`;
-                signoutButton.style.display = 'block'; // Show sign-out button
+                signoutButton.style.display = 'block'; // Show sign out button
             } else {
-                // User is not logged in, redirect to login page
+                // Redirect to sign-in page if not logged in
                 window.location.href = 'index.html';
             }
-        });
+        }
 
         // Add event listener for sign-out button
         signoutButton.addEventListener('click', (e) => {
             e.preventDefault();
             auth.signOut().then(() => {
-                // Redirect to sign-in page after sign-out
+                // Redirect to sign-in page after sign out
                 window.location.href = 'index.html';
             }).catch((error) => {
                 console.error('Error signing out:', error);
