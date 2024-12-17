@@ -9,10 +9,6 @@
 <body>
     <!-- Header Section -->
     <header class="header">
-        <div class="user-info">
-            <span id="userEmail"></span> <!-- Display user email -->
-            <button id="signoutButton">Sign Out</button> <!-- Sign Out Button -->
-        </div>
         <h1>Welcome to the Football legacy Website</h1>
         <nav>
             <ul>
@@ -22,6 +18,12 @@
             </ul>
         </nav>
     </header>
+
+    <!-- User Info Section -->
+    <div class="user-info">
+        <span id="userEmail"></span> <!-- Display user email -->
+        <a href="index.html" id="signoutLink">Sign Out</a> <!-- Link for Sign Out -->
+    </div>
 
     <!-- Search Section -->
     <section id="search" class="search-section">
@@ -49,10 +51,9 @@
         <p>&copy; 2024 Sports Website. All rights reserved.</p>
     </footer>
 
-    <!-- Firebase Script -->
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
+    <script src="script.js"></script>
     <script>
+        // Assuming you're using Firebase for authentication
         const firebaseConfig = {
             apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
             authDomain: "ahmed-99129.firebaseapp.com",
@@ -66,7 +67,6 @@
         const firebaseApp = firebase.initializeApp(firebaseConfig);
         const auth = firebaseApp.auth();
         const userEmailElement = document.getElementById("userEmail");
-        const signoutButton = document.getElementById("signoutButton");
 
         window.onload = function() {
             const user = auth.currentUser;
@@ -80,8 +80,8 @@
             }
         }
 
-        // Event listener for sign-out button
-        signoutButton.addEventListener('click', (e) => {
+        // Sign-out link event
+        document.getElementById('signoutLink').addEventListener('click', function(e) {
             e.preventDefault();
             auth.signOut().then(() => {
                 // Redirect to sign-in page after sign out
@@ -93,5 +93,4 @@
     </script>
 </body>
 </html>
-
 
