@@ -82,10 +82,9 @@
       appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
       measurementId: "G-YGW2QVQ32C"
     };
-    const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-    // تهيئة Authentication
-    const auth = firebaseApp.auth();  // Firebase Authentication
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
     // تسجيل الدخول عبر Firebase
     document.getElementById('signInForm').addEventListener('submit', (e) => {
@@ -93,7 +92,6 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      // التحقق من البريد الإلكتروني وكلمة المرور في Firebase
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -104,6 +102,7 @@
           const errorCode = error.code;
           const errorMessage = error.message;
           document.getElementById('error').textContent = errorMessage;
+          console.log(errorCode, errorMessage);  // عرض الأخطاء في الكونسول
         });
     });
   </script>
