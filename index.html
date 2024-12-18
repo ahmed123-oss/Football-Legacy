@@ -12,7 +12,9 @@
     <h1>Sign In</h1>
     <input type="email" id="signInEmail" placeholder="Enter Email" required>
     <input type="password" id="signInPassword" placeholder="Enter Password" required>
-    <button type="submit">Sign In</button>
+    <!-- في نموذج تسجيل الدخول -->
+<button type="submit" id="loginButton">Sign In</button>
+
     <p class="error" id="error"></p>
     <button type="button" id="googleSignInBtn">Sign in with Google</button>
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
@@ -79,7 +81,15 @@
           document.getElementById("error").textContent = error.message;
         });
     });
+    // عندما يتم تسجيل الدخول
+// عندما يتم تسجيل الدخول
+document.getElementById("loginButton").addEventListener("click", function() {
+    const email = document.getElementById("signInEmail").value;  // استخدم المدخل الصحيح
+    localStorage.setItem("userEmail", email); // تخزين الإيميل في localStorage
+    window.location.href = "home.html"; // الانتقال إلى صفحة الـ home
+});
+
+
   </script>
 </body>
 </html>
-
