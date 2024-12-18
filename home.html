@@ -1,17 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Website</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <style>
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111; /* لون خلفية داكن */
+            color: #ffffff; /* لون النص */
+            width: 100%;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 1.5em;
+            border-bottom: 3px solid #84ffd2;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #00cc66;
+        }
+
+        section {
+            padding: 40px 20px;
+            margin: 20px;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+            background-color: #333;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #84ffd2;
+            text-align: center;
+        }
+
+        section p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #ddd;
+            text-align: center;
+        }
+
+        .search-section input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #00cc66;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #000;
+            margin-bottom: 10px;
+            margin-left: 15%;
+        }
+
+        .search-section button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #00cc66;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-section button:hover {
+            background-color: #00d042;
+        }
+
+        #searchResult {
+            margin-top: 20px;
+            color: #84ffd2;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        #signoutLink {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #14ac33;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 20px;
+            position: fixed;
+            bottom: 20px;
+            right: 730px;
+            z-index: 10;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #signoutLink:hover {
+            background-color: #118c25;
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: #ddd;
+            border-top: 3px solid #84ffd2;
+        }
+
+
+        .search-suggestions {
+            width: 60%;
+            margin-left: 15%;
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            border: 2px solid #00cc66;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .search-suggestions div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .search-suggestions div:hover {
+            background-color: #00cc66;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
     <!-- Header Section -->
     <header class="header">
-        <h1>Welcome to the Football legacy Website</h1>
+        <h1>Welcome to the Football Legacy Website</h1>
         <nav>
             <ul>
                 <li><a href="#search">Search</a></li>
@@ -25,35 +177,36 @@
     <section id="search" class="search-section">
         <h2>Search for Your Team</h2>
         <input type="text" id="searchInput" placeholder="Enter team name..." autocomplete="off">
-        <div id="suggestionsList" class="suggestions-list"></div>
         <button id="searchButton">Search</button>
         <div id="searchResult"></div>
+        <div id="suggestions" class="search-suggestions"></div>
     </section>
-    
+
     
     <!-- About Section -->
     <section id="about" class="about-section">
         <h2>About the Website</h2>
-        <p>This website provide information about football, allowing you to search for teams and learn about their history and achievements.</p>
+        <p>This website provides information about football, allowing you to search for teams and learn about their history and achievements.</p>
     </section>
 
     <!-- Football Section -->
     <section id="football" class="football-section">
         <h2>Football</h2>
-        <p>Football is the most popular sport in the world. Stay tuned for the latest news and matches..</p>
+        <p>Football is the most popular sport in the world. Stay tuned for the latest news and matches.</p>
     </section>
     <section>
         <a href="index.html" id="signoutLink" class="signout-link">Sign Out</a>
-
     </section>
 
+
     <!-- Footer Section -->
-     
-    <footer class="footer">
+    <footer>
         <p>&copy; 2024 Sports Website. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
-</body>
-</html> 
 
+</style>
+
+<script src="script.js"></script>
+</body>
+</html>
