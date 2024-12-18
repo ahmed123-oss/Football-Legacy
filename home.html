@@ -157,12 +157,27 @@
             background-color: #00cc66;
             color: white;
         }
+       #userEmailDisplay {
+        font-size: 1.2em; /* تغيير حجم الخط */
+        color: #84ffd2; /* تغيير اللون */
+        background-color: #333; /* تغيير الخلفية */
+        padding: 10px 20px; /* إضافة مسافة داخلية */
+        border-radius: 8px; /* إضافة حواف دائرية */
+        text-align: center; /* توسيط النص */
+        margin-top: 20px; /* إضافة مسافة فوق العنصر */
+        width: 80%; /* تحديد عرض العنصر */
+        margin-left: 10%; /* توسيط العنصر */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* إضافة ظل */
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
 
     </style>
 </head>
 <body>
     <!-- Header Section -->
     <header class="header">
+        <div id="userEmailDisplay"></div>
         <h1>Welcome to the Football Legacy Website</h1>
         <nav>
             <ul>
@@ -172,7 +187,8 @@
             </ul>
         </nav>
     </header>
-
+      
+ 
     <!-- Search Section -->
     <section id="search" class="search-section">
         <h2>Search for Your Team</h2>
@@ -182,7 +198,7 @@
         <div id="suggestions" class="search-suggestions"></div>
     </section>
 
-    
+
     <!-- About Section -->
     <section id="about" class="about-section">
         <h2>About the Website</h2>
@@ -206,7 +222,17 @@
 
 
 </style>
+<script>
+const userEmail = localStorage.getItem("userEmail");
 
+if (userEmail) {
+    document.getElementById("userEmailDisplay").textContent = `Welcome, ${userEmail}`; // عرض الإيميل في الصفحة
+} else {
+    document.getElementById("userEmailDisplay").textContent = "User not logged in.";
+}
+
+    
+</script>
 <script src="script.js"></script>
 </body>
 </html>
