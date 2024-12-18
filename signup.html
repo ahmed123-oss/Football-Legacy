@@ -5,76 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
   <style>
-    h1 {
-      font-size: 500%;
-      margin-top: 0%;
-    }
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(to right, #00c6ff, #0072ff);
       text-align: center;
-      margin-top: 50px;
       padding: 0;
+      margin: 0;
       height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     form {
-      background-color: rgba(255, 255, 255, 0.444);
-      padding: 60px;
-      border-radius: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      display: inline-block;
-      width: 90%;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
       max-width: 400px;
-      margin-top: 100px;
     }
     input, button {
       display: block;
       margin: 15px auto;
-      padding: 12px;
-      width: 80%;
+      padding: 10px;
+      width: 90%;
       border-radius: 8px;
-      border: 1px solid #ceadad;
+      border: 1px solid #ccc;
       font-size: 16px;
     }
     button {
-      background-color: #28a745;
+      background-color: #007bff;
       color: white;
       border: none;
       cursor: pointer;
-      font-size: 18px;
     }
     button:hover {
-      background-color: #248e12;
+      background-color: #0056b3;
     }
-    p {
-      margin-top: 10px;
+    .message {
       font-size: 14px;
-    }
-    a {
-      color: #007BFF;
-      text-decoration: none;
+      margin-top: 10px;
     }
     .error {
       color: red;
-      margin-top: 10px;
-      font-weight: bold;
+    }
+    .success {
+      color: green;
+    }
+    a {
+      color: #28a745;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <form id="signupForm">
-    <h1 style="color: white;">Sign Up</h1>
-    <input type="email" id="email" placeholder="Enter Email" required>
-    <input type="password" id="password" placeholder="Enter Password" required>
+  <form id="signUpForm">
+    <h2>Sign Up</h2>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <input type="password" id="password" placeholder="Enter your password" required>
     <button type="submit">Sign Up</button>
-    <p class="error" id="error"></p>
+    <p class="message" id="message"></p>
     <p>Already have an account? <a href="index.html">Sign In</a></p>
   </form>
 
-  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
-
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
   <script>
+    // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
       authDomain: "ahmed-99129.firebaseapp.com",
@@ -82,27 +80,42 @@
       storageBucket: "ahmed-99129.appspot.com",
       messagingSenderId: "113829270298",
       appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
-      measurementId: "G-YGW2QVQ32C"
     };
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
-    const firebaseApp = firebase.initializeApp(firebaseConfig);
-    const auth = firebaseApp.auth();
-    const signupForm = document.getElementById("signupForm");
-    const errorElement = document.getElementById("error");
-
-    signupForm.addEventListener("submit", (e) => {
+    // Sign Up
+    document.getElementById('signUpForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const message = document.getElementById('message');
 
       auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.href = "index.html"; // Redirect to Sign In page
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          user.sendEmailVerification()
+            .then(() => {
+              message.textContent = "Account created! Please verify your email.";
+              message.className = "message success";
+              auth.signOut();
+
+              setTimeout(() => {
+                window.location.href = "index.html";
+              }, 2000);
+            })
+            .catch((error) => {
+              message.textContent = error.message;
+              message.className = "message error";
+            });
         })
         .catch((error) => {
-          errorElement.textContent = error.message;
+          message.textContent = error.message;
+          message.className = "message error";
         });
     });
   </script>
 </body>
 </html>
+
