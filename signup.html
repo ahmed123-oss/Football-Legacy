@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
   <style>
-    /* اضافة التنسيقات التي تم تحديدها من قبل */
+    /* التنسيقات */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(to right, #00c6ff, #0072ff);
@@ -64,14 +64,13 @@
     <input type="email" id="email" placeholder="Enter Email" required>
     <input type="password" id="password" placeholder="Enter Password" required>
     <button type="submit">Sign Up</button>
-    <p class="error" id="error"></p>
+    <p class="error" id="message"></p>
     <p>Already have an account? <a href="index.html">Sign In</a></p>
   </form>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
 
   <script>
     // إعداد Firebase
@@ -84,37 +83,30 @@
       appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
       measurementId: "G-YGW2QVQ32C"
     };
-    const firebaseApp = firebase.initializeApp(firebaseConfig);
-
-// تهيئة Firestore و Authentication
-const db = firebaseApp.firestore();  // Firestore
-const auth = firebaseApp.auth();  // Firebase Authentication
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
     // التسجيل عبر Firebase
     document.getElementById('signUpForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      const message = document.getElementById('message');
 
-      // التحقق من البريد الإلكتروني وكلمة المرور في Firebase
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-
-          // تخزين البيانات في Firebase Realtime Database
-          firebase.database().ref('users/' + user.uid).set({
-            email: email,
-            password: password
-          })
-          .then(() => {
-            alert("Account created successfully!");
-            window.location.href = "signin.html"; // الانتقال إلى صفحة تسجيل الدخول
-          });
+          user.sendEmailVerification()
+            .then(() => {
+              message.textContent = "Verification email sent! Please verify your email before signing in.";
+              message.className = "error";
+              window.location.href = "index.html"; // الانتقال إلى صفحة تسجيل الدخول
+            });
         })
         .catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
-          document.getElementById('error').textContent = errorMessage;
+          message.textContent = errorMessage;
+          message.className = "error";
         });
     });
   </script>
