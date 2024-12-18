@@ -1,35 +1,36 @@
-<!DOCTYPE html>
+هات الكود كامل مع ضبط شكل الستايل <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In</title>
   <style>
+    /* اضافة التنسيقات التي تم تحديدها من قبل */
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(to right, #00c6ff, #0072ff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      text-align: center;
+      margin-top: 50px;
+      padding: 0;
       height: 100vh;
-      margin: 0;
     }
     form {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      width: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 60px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      width: 90%;
       max-width: 400px;
-      text-align: center;
+      margin-top: 100px;
     }
     input, button {
       display: block;
       margin: 15px auto;
-      padding: 10px;
-      width: 90%;
+      padding: 12px;
+      width: 80%;
       border-radius: 8px;
-      border: 1px solid #ccc;
+      border: 1px solid #ceadad;
       font-size: 16px;
     }
     button {
@@ -37,75 +38,71 @@
       color: white;
       border: none;
       cursor: pointer;
+      font-size: 18px;
     }
     button:hover {
       background-color: #248e12;
     }
-    .message {
-      font-size: 14px;
+    p {
       margin-top: 10px;
+      font-size: 14px;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
     }
     .error {
       color: red;
-    }
-    a {
-      color: #007bff;
-      text-decoration: none;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <form id="signInForm">
-    <h2>Sign In</h2>
-    <input type="email" id="signInEmail" placeholder="Enter your email" required>
-    <input type="password" id="signInPassword" placeholder="Enter your password" required>
+    <h1 style="color: white;">Sign In</h1>
+    <input type="email" id="signInEmail" placeholder="Enter Email" required>
+    <input type="password" id="signInPassword" placeholder="Enter Password" required>
     <button type="submit">Sign In</button>
-    <p class="message" id="message"></p>
+    <p class="error" id="error"></p>
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </form>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+
   <script>
-    // Firebase Configuration
+    // إعداد Firebase
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
+      authDomain: "ahmed-99129.firebaseapp.com",
+      projectId: "ahmed-99129",
+      storageBucket: "ahmed-99129.appspot.com",
+      messagingSenderId: "113829270298",
+      appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
+      measurementId: "G-YGW2QVQ32C"
     };
+
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Sign In
+    // تسجيل الدخول عبر Firebase
     document.getElementById('signInForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const email = document.getElementById('signInEmail').value;
       const password = document.getElementById('signInPassword').value;
-      const message = document.getElementById('message');
 
-      auth.signInWithEmailAndPassword(email, password)
+      firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-
-          if (user.emailVerified) {
-            message.textContent = "Login successful!";
-            message.className = "message success";
-            setTimeout(() => {
-              window.location.href = "home.html";
-            }, 2000);
-          } else {
-            message.textContent = "Please verify your email before logging in.";
-            message.className = "message error";
-            auth.signOut();
-          }
+          alert("Login successful!");
+          window.location.href = "home.html"; // الانتقال إلى الصفحة الرئيسية بعد تسجيل الدخول
         })
         .catch((error) => {
-          message.textContent = error.message;
-          message.className = "message error";
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          document.getElementById('error').textContent = errorMessage;
         });
     });
   </script>
