@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+  <title>Sign In</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -55,21 +55,16 @@
       margin-top: 10px;
       font-weight: bold;
     }
-    .success {
-      color: green;
-      margin-top: 10px;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
-  <form id="signUpForm">
-    <h1 style="color: white;">Sign Up</h1>
+  <form id="signInForm">
+    <h1 style="color: white;">Sign In</h1>
     <input type="email" id="email" placeholder="Enter Email" required>
     <input type="password" id="password" placeholder="Enter Password" required>
-    <button type="submit">Sign Up</button>
+    <button type="submit">Sign In</button>
     <p class="error" id="error"></p>
-    <p>Already have an account? <a href="index.html">Sign In</a></p>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </form>
 
   <!-- Firebase SDKs -->
@@ -90,32 +85,21 @@
     const firebaseApp = firebase.initializeApp(firebaseConfig);
     const auth = firebaseApp.auth();
 
-    // التسجيل عبر Firebase
-    document.getElementById('signUpForm').addEventListener('submit', (e) => {
+    // تسجيل الدخول عبر Firebase
+    document.getElementById('signInForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      // التحقق من وجود البريد الإلكتروني
-      auth.createUserWithEmailAndPassword(email, password)
+      auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
+          // تسجيل الدخول ناجح
           const user = userCredential.user;
-          
-          // إرسال رسالة التحقق عبر البريد الإلكتروني
-          user.sendEmailVerification()
-            .then(() => {
-              document.getElementById('error').textContent = '';  // إزالة أي رسالة خطأ سابقة
-              document.getElementById('error').classList.remove('error');
-              document.getElementById('error').classList.add('success');
-              document.getElementById('error').textContent = "تم إرسال رسالة التحقق إلى بريدك الإلكتروني.";
-              setTimeout(() => {
-                window.location.href = "index.html"; // الانتقال إلى صفحة تسجيل الدخول
-              }, 2000);
-            })
-            .catch((error) => {
-              console.log("Error sending verification email:", error);
-              document.getElementById('error').textContent = error.message;
-            });
+          if (user.emailVerified) {
+            window.location.href = "home.html"; // الانتقال إلى الصفحة الرئيسية بعد التحقق
+          } else {
+            document.getElementById('error').textContent = "Please verify your email address.";
+          }
         })
         .catch((error) => {
           const errorMessage = error.message;
