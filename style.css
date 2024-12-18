@@ -3,170 +3,150 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #eaf5f8; /* خلفية فاتحة مائلة للأزرق */
-    color: #000000; /* لون النص */
+    background-color: #111; /* خلفية داكنة */
+    color: #ffffff; /* لون النص */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* جعل الصفحة تأخذ كامل ارتفاع الشاشة */
+    flex-direction: column;
 }
 
+/* Header Styling */
 header {
-    background-color: #000000; /* لون أزرق غامق */
+    background-color: #222;
     color: white;
     padding: 20px 0;
     text-align: center;
+    font-size: 1.5em;
+    border-bottom: 3px solid #84ffd2;
 }
 
-header h1 {
+/* Form Styling (for Sign Up) */
+form {
+    background-color: #222;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 2em;
+    color: #84ffd2; /* لون النص الأخضر */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
     font-size: 2.5em;
-    margin: 0;
+    color: #84ffd2;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 10px 0 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* Inputs and Buttons */
+input, button {
+    display: block;
+    width: 80%;
+    padding: 12px;
+    margin: 15px auto;
+    border-radius: 8px;
+    border: 1px solid #555;
+    font-size: 1em;
+    background-color: #333;
+    color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-nav ul li {
-    display: inline-block;
+input:focus {
+    border-color: #84ffd2;
+    outline: none;
 }
 
-nav ul li a {
+button {
+    background-color: #00cc66; /* زر أخضر */
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00d042; /* تغيير عند التمرير */
+}
+
+/* Success Message */
+.success-message {
+    background-color: #28a745;
     color: white;
-    text-decoration: none;
-    font-size: 1.2em;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    display: none; /* Hidden by default */
 }
 
-nav ul li a:hover {
-    color: #00cc66; /* لون أخضر عند المرور */
+.success-message.show {
+    display: block;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    color: #ddd;
+    border-top: 3px solid #84ffd2;
+}
+
+/* Footer Links */
+a {
+    color: #84ffd2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* Search Section */
-.search-section {
-    text-align: center;
-    padding: 40px;
-    background-color: #ffffff;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.search-section h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #000000;
-}
-
 .search-section input[type="text"] {
-    width: 50%;
+    width: 60%;
     padding: 10px;
-    font-size: 1.2em;
-    border: 2px solid #000000;
+    font-size: 1em;
+    border: 2px solid #00cc66;
     border-radius: 5px;
-    margin-right: 10px;
+    background-color: #fff;
+    color: #000;
+    margin-bottom: 10px;
 }
 
 .search-section button {
     padding: 10px 20px;
-    font-size: 1.2em;
+    font-size: 1em;
     border: none;
-    background-color: #00cc66; /* أخضر */
-    color: white;
     border-radius: 5px;
+    background-color: #00cc66;
+    color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .search-section button:hover {
-    background-color: #00994d; /* لون الزر عند المرور */
+    background-color: #00d042;
 }
 
-/* About Section */
-.about-section {
-    background-color: #ffffff;
-    padding: 30px;
-    text-align: center;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.about-section h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #000000;
-}
-
-/* Football Section */
-.football-section {
-    background-color: #ffffff;
-    padding: 30px;
-    text-align: center;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.football-section h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #000000;
-}
-
-/* Footer Section */
-
-    .footer {
-        text-align: center;
-        padding: 20px;
-        background-color: #f1f1f1;
-        position: relative;
-        bottom: 0;
+/* General Styles for Mobile */
+@media (max-width: 600px) {
+    form {
         width: 100%;
-}
+        padding: 20px;
+    }
 
-
-#searchResult h3 {
-    color: #00cc66;
-}
-
-#searchResult p {
-    font-size: 1.2em;
-    color: #003366;
-}
-
-/* تنسيق قائمة الاقتراحات */
-.suggestions-list {
-    position: absolute;
-    background-color: #00994d;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    max-height: 150px;
-    overflow-y: auto;
-    width: 90%;
-    margin-top: 5px;
-    z-index: 10;
-    border-radius: 5px;
-}
-
-.suggestion-item {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.suggestion-item:hover {
-    background-color: #eaf5f8;
-}
-#signoutLink {
-
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #14ac33; /* اللون الأخضر */
-    color: white;
-    
-    border-radius: 20px;
-    position: fixed; /* لجعل الزر ثابت في أسفل الشاشة */
-    bottom: 20px; /* المسافة من أسفل الشاشة *
-
-    z-index: 10; /* لضمان أن الزر يظهر فوق العناصر الأخرى */
-}
-
-#signoutLink:hover {
-    background-color: #118c25; /* تغيير اللون عند التحويم */
+    .search-section input[type="text"] {
+        width: 80%;
+    }
 }
