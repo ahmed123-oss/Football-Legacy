@@ -4,76 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign In</title>
-  <style>
-    /* اضافة التنسيقات التي تم تحديدها من قبل */
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      text-align: center;
-      margin-top: 50px;
-      padding: 0;
-      height: 100vh;
-    }
-    form {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 60px;
-      border-radius: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      display: inline-block;
-      width: 90%;
-      max-width: 400px;
-      margin-top: 100px;
-    }
-    input, button {
-      display: block;
-      margin: 15px auto;
-      padding: 12px;
-      width: 80%;
-      border-radius: 8px;
-      border: 1px solid #ceadad;
-      font-size: 16px;
-    }
-    button {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-    }
-    button:hover {
-      background-color: #248e12;
-    }
-    p {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-    a {
-      color: #007BFF;
-      text-decoration: none;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h2>Football Legacy</h2>
   <form id="signInForm">
-    <h1 style="color: white;">Sign In</h1>
+    <h1>Sign In</h1>
     <input type="email" id="signInEmail" placeholder="Enter Email" required>
     <input type="password" id="signInPassword" placeholder="Enter Password" required>
     <button type="submit">Sign In</button>
     <p class="error" id="error"></p>
+    <button type="button" id="googleSignInBtn">Sign in with Google</button>
     <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
   </form>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <!-- Success Message -->
+  <div id="successMessage" class="success-message" style="display: none;">
+    Login successful! Redirecting to Home...
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
 
   <script>
-    // إعداد Firebase
+    // Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
       authDomain: "ahmed-99129.firebaseapp.com",
@@ -84,27 +38,48 @@
       measurementId: "G-YGW2QVQ32C"
     };
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    // Initialize Firebase
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth(); // Firebase Auth
 
-    // تسجيل الدخول عبر Firebase
-    document.getElementById('signInForm').addEventListener('submit', (e) => {
+    // Sign-In functionality
+    document.getElementById("signInForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      const email = document.getElementById('signInEmail').value;
-      const password = document.getElementById('signInPassword').value;
+      const email = document.getElementById("signInEmail").value;
+      const password = document.getElementById("signInPassword").value;
 
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          alert("Login successful!");
-          window.location.href = "home.html"; // الانتقال إلى الصفحة الرئيسية بعد تسجيل الدخول
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          // Display success message
+          const successMessage = document.getElementById("successMessage");
+          successMessage.style.display = "block"; // Show the success message
+          setTimeout(() => {
+            window.location.href = "home.html"; // Navigate to home page
+          }, 2000); // Wait for 2 seconds before redirecting
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          document.getElementById('error').textContent = errorMessage;
+          document.getElementById("error").textContent = error.message;
+        });
+    });
+
+    // Google Sign-In functionality
+    document.getElementById("googleSignInBtn").addEventListener("click", () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      auth.signInWithPopup(provider)
+        .then(() => {
+          // Display success message
+          const successMessage = document.getElementById("successMessage");
+          successMessage.style.display = "block"; // Show the success message
+          setTimeout(() => {
+            window.location.href = "home.html"; // Navigate to home page
+          }, 2000); // Wait for 2 seconds before redirecting
+        })
+        .catch((error) => {
+          document.getElementById("error").textContent = error.message;
         });
     });
   </script>
 </body>
 </html>
+
