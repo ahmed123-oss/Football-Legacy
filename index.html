@@ -8,13 +8,11 @@
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(to right, #00c6ff, #0072ff);
-      text-align: center;
-      padding: 0;
-      margin: 0;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      margin: 0;
     }
     form {
       background-color: rgba(255, 255, 255, 0.9);
@@ -23,6 +21,7 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       width: 100%;
       max-width: 400px;
+      text-align: center;
     }
     input, button {
       display: block;
@@ -49,9 +48,6 @@
     .error {
       color: red;
     }
-    .success {
-      color: green;
-    }
     a {
       color: #007bff;
       text-decoration: none;
@@ -69,17 +65,17 @@
   </form>
 
   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
   <script>
     // Firebase Configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyDKRADtZ9fa2pyvXIw5oXFf7ttNFje80A8",
-      authDomain: "ahmed-99129.firebaseapp.com",
-      projectId: "ahmed-99129",
-      storageBucket: "ahmed-99129.appspot.com",
-      messagingSenderId: "113829270298",
-      appId: "1:113829270298:web:0dc3b3a84d94566e8792a3",
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
     };
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
@@ -95,16 +91,16 @@
         .then((userCredential) => {
           const user = userCredential.user;
 
-          if (!user.emailVerified) {
-            message.textContent = "Please verify your email before logging in.";
-            message.className = "message error";
-            auth.signOut();
-          } else {
+          if (user.emailVerified) {
             message.textContent = "Login successful!";
             message.className = "message success";
             setTimeout(() => {
               window.location.href = "home.html";
             }, 2000);
+          } else {
+            message.textContent = "Please verify your email before logging in.";
+            message.className = "message error";
+            auth.signOut();
           }
         })
         .catch((error) => {
@@ -115,5 +111,3 @@
   </script>
 </body>
 </html>
-
-
